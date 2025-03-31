@@ -11,6 +11,15 @@ function getComputerChoice() {
 	}
 }
 
-const computerChoice = getComputerChoice();
+function getHumanChoice() {
+	const answer = prompt(
+		"Enter your choice: rock, paper and scissors"
+	).toLowerCase();
 
-console.log({ computerChoice });
+	return answer;
+}
+
+const computerChoice = getComputerChoice();
+const humanChoice = getHumanChoice();
+
+console.log({ computerChoice, humanChoice });
