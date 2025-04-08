@@ -5,6 +5,13 @@ let computerScore = 0;
 
 let playerChoice;
 
+const nav = createNavbar();
+const cpuComponent = createCPUChoiceComponent();
+const container = document.querySelector(".container");
+document.body.insertBefore(nav, container);
+const cpuChoice = document.querySelector(".cpu-choice");
+cpuChoice.append(cpuComponent);
+
 function getComputerChoice() {
 	const randomChoice = Math.floor(Math.random() * 3);
 
@@ -43,6 +50,8 @@ function playRound() {
 
 	if (playerChoice) {
 		const computerChoice = getComputerChoice();
+		const cpuChoiceText = document.querySelector(".choiceText");
+		cpuChoiceText.textContent = computerChoice;
 		compareChoices(computerChoice);
 
 		playerChoice = null;
@@ -123,3 +132,30 @@ startRoundButton.addEventListener("click", playRound);
 // }
 
 // playGame();
+
+function createNavbar() {
+	const navbar = document.createElement("nav");
+	navbar.style =
+		"background: #009688 ; height: 80px; display: flex; align-items:center";
+	const p = document.createElement("p");
+	p.textContent = "Rock X Paper X Scissors";
+	p.style =
+		"margin: 0 auto; color: white; font-size: 36px; font-family: 'Wallpoet', sans-serif";
+	navbar.appendChild(p);
+
+	return navbar;
+}
+
+function createCPUChoiceComponent() {
+	const div = document.createElement("div");
+	div.style =
+		"background: #009688 ; height: 80px; display: flex; align-items:center";
+	const p = document.createElement("p");
+	p.className = "choiceText";
+	p.textContent = "";
+	p.style =
+		"margin: 0 auto; color: white; font-size: 36px; font-family: 'Wallpoet', sans-serif";
+	div.appendChild(p);
+
+	return div;
+}
