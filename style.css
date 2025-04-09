@@ -2,6 +2,10 @@
 	box-sizing: border-box;
 }
 
+a {
+	text-decoration: none;
+}
+
 body {
 	background-color: #54b2a9;
 	margin: 0;
@@ -9,7 +13,6 @@ body {
 }
 
 .container {
-	border: 1px solid black;
 	min-height: calc(100vh - 80px);
 	display: flex;
 	flex-direction: column;
@@ -18,7 +21,6 @@ body {
 }
 
 .choices-container {
-	border: 1px solid black;
 	background-color: #83d0c9;
 	margin: 40px auto;
 	display: flex;
@@ -35,7 +37,6 @@ body {
 
 .player-choice,
 .cpu-choice {
-	border: 1px solid black;
 	flex: 1;
 	display: flex;
 	align-items: center;
@@ -44,7 +45,7 @@ body {
 }
 
 .selected-choice {
-	border: 1px solid red;
+	border: 2px solid red;
 }
 
 .hide {
