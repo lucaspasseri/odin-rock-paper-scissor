@@ -46,6 +46,9 @@ function compareChoices() {
 	console.log({
 		state,
 	});
+
+	const subtitle = document.querySelector("h2");
+	subtitle.textContent = `Player score: ${state.playerScore} | Opponent score: ${state.opponentScore}`;
 }
 
 function playRound() {
@@ -53,8 +56,8 @@ function playRound() {
 
 	if (state.playerChoice) {
 		state.opponentChoice = getComputerChoice();
-		// const cpuChoiceText = document.querySelector(".choiceText");
-		// cpuChoiceText.textContent = computerChoice;
+		const opponentChoice = document.querySelector("#opponent-choice");
+		opponentChoice.textContent = capitalize(state.opponentChoice);
 		compareChoices();
 		const selectedChoice = document.querySelector(".selected-choice");
 		selectedChoice.classList.toggle("selected-choice");
@@ -92,6 +95,10 @@ function createGame(gameMode, playerName) {
 	title.textContent = `Game Mode: ${gameMode} | Player: ${playerName}`;
 	container.appendChild(title);
 
+	const subtitle = document.createElement("h2");
+	subtitle.textContent = `Player score: ${state.playerScore} | Opponent score: ${state.opponentScore}`;
+	container.appendChild(subtitle);
+
 	const backgroundImage = document.createElement("div");
 	backgroundImage.style =
 		"background-image: url('123.jpg'); width: 600px; height: 400px; background-size: cover; display: flex; flex-direction: column";
@@ -106,7 +113,8 @@ function createGame(gameMode, playerName) {
 	playerSide.style =
 		"border: 1px solid green; flex: 1; display: flex; flex-direction: column; justify-content: space-around; padding: 0 10px;";
 	const opponentSide = document.createElement("div");
-	opponentSide.style = "border: 1px solid orange; flex: 1";
+	opponentSide.style =
+		"border: 1px solid orange; flex: 1; display: flex; justify-content: center; align-items: center; padding: 0 10px;";
 
 	const rockBtn = document.createElement("button");
 	rockBtn.textContent = "Rock";
@@ -134,9 +142,16 @@ function createGame(gameMode, playerName) {
 	confirmBtn.textContent = "Confirm";
 	confirmBtn.onclick = playRound;
 
+	const opponentChoice = document.createElement("div");
+	opponentChoice.id = "opponent-choice";
+	opponentChoice.style =
+		"border: 1px solid black; width: 100%; background: white; text-align: center";
+
 	playerSide.appendChild(rockBtn);
 	playerSide.appendChild(paperBtn);
 	playerSide.appendChild(scissorsBtn);
+
+	opponentSide.appendChild(opponentChoice);
 
 	boardGame.appendChild(playerSide);
 	boardGame.appendChild(opponentSide);
