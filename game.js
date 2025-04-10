@@ -20,6 +20,11 @@ export function renderPage(page) {
 			const game = createGame(state.gameMode, state.playerName); // Pass game mode and player name to the game component
 			container.appendChild(game);
 			break;
+		case "gameOver":
+			const h1 = document.createElement("h1");
+			h1.textContent = "Game over!";
+			container.appendChild(h1);
+			break;
 		default:
 			container.innerHTML = "<h2>Page not found</h2>";
 			break;

@@ -1,5 +1,30 @@
+import { renderPage } from "../game.js";
 import state from "../state.js";
 import { capitalize } from "../util.js";
+
+function isGameOver() {
+	switch (state.gameMode) {
+		case "bof1":
+			if (state.playerScore === 1 || state.opponentScore === 1) {
+				renderPage("gameOver");
+				return true;
+			}
+
+		case "bof3":
+			if (state.playerScore === 2 || state.opponentScore === 2) {
+				renderPage("gameOver");
+				return true;
+			}
+
+		case "bof5":
+			if (state.playerScore === 3 || state.opponentScore === 3) {
+				renderPage("gameOver");
+				return true;
+			}
+		default:
+			return false;
+	}
+}
 
 function getComputerChoice() {
 	const randomChoice = Math.floor(Math.random() * 3);
@@ -43,9 +68,12 @@ function compareChoices() {
 			}.`
 		);
 	}
-	console.log({
-		state,
-	});
+
+	const isOver = isGameOver();
+
+	if (isOver) {
+		return true;
+	}
 
 	const subtitle = document.querySelector("h2");
 	subtitle.textContent = `Player score: ${state.playerScore} | Opponent score: ${state.opponentScore}`;
@@ -58,7 +86,11 @@ function playRound() {
 		state.opponentChoice = getComputerChoice();
 		const opponentChoice = document.querySelector("#opponent-choice");
 		opponentChoice.textContent = capitalize(state.opponentChoice);
-		compareChoices();
+		const isOver = compareChoices();
+
+		if (isOver) {
+			return;
+		}
 		const selectedChoice = document.querySelector(".selected-choice");
 		selectedChoice.classList.toggle("selected-choice");
 		state.playerChoice = "";
