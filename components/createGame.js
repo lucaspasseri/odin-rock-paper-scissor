@@ -1,5 +1,5 @@
 import { renderPage } from "../game.js";
-import state from "../state.js";
+import { state } from "../state.js";
 import { capitalize } from "../util.js";
 
 function isGameOver() {

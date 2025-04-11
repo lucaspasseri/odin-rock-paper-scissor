@@ -1,4 +1,4 @@
-import state from "../state.js";
+import { state } from "../state.js";
 import { renderPage } from "../game.js";
 
 function navigateToGame(gameMode) {
@@ -33,7 +33,7 @@ function createIntroduction() {
 	const nameInput = document.createElement("input");
 	nameInput.setAttribute("type", "text");
 	nameInput.placeholder = "Insert your name";
-	nameInput.oninput = e => (state.playerName = e.target.value); // Update player name in state
+	nameInput.oninput = e => (state.playerName = e.target.value);
 
 	container.appendChild(nameInput);
 	container.appendChild(bestOf1);

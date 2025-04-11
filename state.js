@@ -1,4 +1,4 @@
-const state = {
+const initialState = {
 	gameMode: null,
 	playerName: "",
 	playerChoice: "",
@@ -7,4 +7,6 @@ const state = {
 	opponentScore: 0,
 };
 
-export default state;
+const state = { ...initialState };
+
+export { state, initialState };
