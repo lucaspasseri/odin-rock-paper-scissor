@@ -1,4 +1,4 @@
-import { renderPage } from "../game.js";
+import { renderPage } from "../app.js";
 
 function createEndgame(playerScore, opponentScore, gameMode, playerName) {
 	const container = document.createElement("div");

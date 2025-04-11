@@ -1,4 +1,4 @@
-import { renderPage } from "../game.js";
+import { renderPage } from "../app.js";
 import { state } from "../state.js";
 import { capitalize } from "../util.js";
 

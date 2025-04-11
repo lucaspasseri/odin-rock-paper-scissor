@@ -12,6 +12,20 @@ body {
 	padding: 0;
 }
 
+.navbar {
+	background: #009688;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+
+.navbar-text {
+	margin: 0 auto;
+	color: white;
+	font-size: 40px;
+	font-family: "Wallpoet", sans-serif;
+}
+
 .container {
 	min-height: calc(100vh - 80px);
 	display: flex;
@@ -20,34 +34,31 @@ body {
 	justify-content: center;
 }
 
-.choices-container {
-	background-color: #83d0c9;
-	margin: 40px auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	width: 1100px;
-	flex-grow: 1;
-
-	button {
-		height: 50px;
-	}
-}
-
-.player-choice,
-.cpu-choice {
-	flex: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-}
-
 .selected-choice {
 	border: 2px solid red;
 }
 
-.hide {
-	display: none;
+.introduction-container {
+	background: #83d0c9;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 12px;
+	gap: 8px;
+}
+
+.best-of-n-button {
+	background: #009688;
+	color: white;
+	font-size: 36px;
+	font-family: "Wallpoet", sans-serif;
+	width: 100%;
+}
+
+.name-input {
+	height: 42px;
+	font-size: 36px;
+	font-family: "Wallpoet", sans-serif;
+	margin-bottom: 20px;
+	text-align: center;
 }
