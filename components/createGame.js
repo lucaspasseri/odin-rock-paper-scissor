@@ -85,7 +85,7 @@ function playRound() {
 	if (state.playerChoice) {
 		state.opponentChoice = getComputerChoice();
 		const opponentChoice = document.querySelector("#opponent-choice");
-		opponentChoice.textContent = capitalize(state.opponentChoice);
+		opponentChoice.className = `${state.opponentChoice}`;
 		const isOver = compareChoices();
 
 		if (isOver) {
@@ -133,20 +133,20 @@ function createGame(gameMode, playerName) {
 
 	const backgroundImage = document.createElement("div");
 	backgroundImage.style =
-		"background-image: url('123.jpg'); width: 600px; height: 400px; background-size: cover; display: flex; flex-direction: column";
+		"background-image: url('456.png'); width: 800px; height: 800px; background-size: cover; display: flex; flex-direction: column;";
 
 	container.appendChild(backgroundImage);
 
 	const boardGame = document.createElement("div");
 	boardGame.style =
-		"border: 1px solid purple; padding: 10px; display: flex; flex: 1; justify-content: space-between";
+		"border: 1px solid purple; padding: 10px; display: flex; flex: 1; flex-direction: column-reverse";
 
 	const playerSide = document.createElement("div");
 	playerSide.style =
-		"border: 1px solid green; flex: 1; display: flex; flex-direction: column; justify-content: space-around; padding: 0 10px;";
+		"border: 1px solid green; flex: 1; display: flex; justify-content: space-around; padding: 0 10px; align-items: end";
 	const opponentSide = document.createElement("div");
 	opponentSide.style =
-		"border: 1px solid orange; flex: 1; display: flex; justify-content: center; align-items: center; padding: 0 10px;";
+		"border: 1px solid orange; flex: 1; display: flex; justify-content: center; align-items: start; padding: 0 10px;";
 
 	const rockBtn = document.createElement("button");
 	rockBtn.textContent = "Rock";
@@ -176,8 +176,8 @@ function createGame(gameMode, playerName) {
 
 	const opponentChoice = document.createElement("div");
 	opponentChoice.id = "opponent-choice";
-	opponentChoice.style =
-		"border: 1px solid black; width: 100%; background: white; text-align: center";
+	// opponentChoice.style =
+	// 	"border: 1px solid black; width: 100%; background: white; text-align: center";
 
 	playerSide.appendChild(rockBtn);
 	playerSide.appendChild(paperBtn);

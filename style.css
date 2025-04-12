@@ -62,3 +62,65 @@ body {
 	margin-bottom: 20px;
 	text-align: center;
 }
+
+.option {
+	height: 200px;
+	width: 100px;
+}
+
+#rock {
+	background-image: url("rockk.png");
+	width: 135px;
+	height: 165px;
+	/* border: 1px solid black; */
+	border-radius: 12px;
+	background-size: cover;
+}
+
+#paper {
+	background-image: url("paperr.png");
+	width: 135px;
+	height: 165px;
+	/* border: 1px solid black; */
+	border-radius: 12px;
+	background-size: cover;
+}
+
+#scissors {
+	background-image: url("scissorss.png");
+	width: 135px;
+	height: 165px;
+	/* border: 1px solid black; */
+	border-radius: 12px;
+	background-size: cover;
+}
+
+.rock {
+	background-image: url("rockk.png");
+	width: 135px;
+	height: 165px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background-size: cover;
+	transform: rotate(180deg);
+}
+
+.paper {
+	background-image: url("paperr.png");
+	width: 135px;
+	height: 165px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background-size: cover;
+	transform: rotate(180deg);
+}
+
+.scissors {
+	background-image: url("scissorss.png");
+	width: 135px;
+	height: 165px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background-size: cover;
+	transform: rotate(180deg);
+}
