@@ -80,12 +80,18 @@ function compareChoices() {
 }
 
 function playRound() {
-	console.log({ playerChoice: state.playerChoice });
+	console.log({});
 
 	if (state.playerChoice) {
 		state.opponentChoice = getComputerChoice();
-		const opponentChoice = document.querySelector("#opponent-choice");
-		opponentChoice.className = `${state.opponentChoice}`;
+		console.log({
+			playerChoice: state.playerChoice,
+			opponentChoice: state.opponentChoice,
+		});
+		const opponentFlipCardInner = document.querySelector(".flip-card-inner");
+		const opponentFlipCardBack = document.querySelector(".flip-card-back");
+		opponentFlipCardBack.classList.add(`${state.opponentChoice}`);
+		opponentFlipCardInner.classList.add("rotate-flip-card");
 		const isOver = compareChoices();
 
 		if (isOver) {
@@ -116,6 +122,16 @@ function setPlayerChoice(event) {
 	selectedChoice.classList.toggle("selected-choice");
 
 	console.log({ selectedChoice });
+
+	if (state.opponentChoice) {
+		const opponentFlipCardInner = document.querySelector(".flip-card-inner");
+		opponentFlipCardInner.classList.toggle("rotate-flip-card");
+
+		const currentOpponentChoice = state.opponentChoice;
+
+		const opponentFlipCardBack = document.querySelector(".flip-card-back");
+		opponentFlipCardBack.classList.toggle(currentOpponentChoice);
+	}
 }
 
 function createGame(gameMode, playerName) {
@@ -151,19 +167,16 @@ function createGame(gameMode, playerName) {
 	const rockBtn = document.createElement("button");
 	rockBtn.textContent = "Rock";
 	rockBtn.id = "rock";
-	rockBtn.className = "option";
 	rockBtn.onclick = setPlayerChoice;
 
 	const paperBtn = document.createElement("button");
 	paperBtn.textContent = "Paper";
 	paperBtn.id = "paper";
-	paperBtn.className = "option";
 	paperBtn.onclick = setPlayerChoice;
 
 	const scissorsBtn = document.createElement("button");
 	scissorsBtn.textContent = "Scissors";
 	scissorsBtn.id = "scissors";
-	scissorsBtn.className = "option";
 	scissorsBtn.onclick = setPlayerChoice;
 
 	const confirmContainer = document.createElement("div");
@@ -176,8 +189,26 @@ function createGame(gameMode, playerName) {
 
 	const opponentChoice = document.createElement("div");
 	opponentChoice.id = "opponent-choice";
-	// opponentChoice.style =
-	// 	"border: 1px solid black; width: 100%; background: white; text-align: center";
+
+	const flipCardDiv = document.createElement("div");
+	flipCardDiv.classList.add("flip-card");
+
+	const flipCardInnerDiv = document.createElement("div");
+	flipCardInnerDiv.classList.add("flip-card-inner");
+
+	const flipCardFrontDiv = document.createElement("div");
+	flipCardFrontDiv.classList.add("blank-option");
+	flipCardFrontDiv.classList.add("flip-card-front");
+
+	const flipCardBackDiv = document.createElement("div");
+	flipCardBackDiv.classList.add("flip-card-back");
+
+	flipCardInnerDiv.appendChild(flipCardFrontDiv);
+	flipCardInnerDiv.appendChild(flipCardBackDiv);
+
+	flipCardDiv.appendChild(flipCardInnerDiv);
+
+	opponentChoice.appendChild(flipCardDiv);
 
 	playerSide.appendChild(rockBtn);
 	playerSide.appendChild(paperBtn);
