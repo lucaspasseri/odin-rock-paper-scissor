@@ -75,23 +75,26 @@ function compareChoices() {
 		return true;
 	}
 
-	const subtitle = document.querySelector("h2");
-	subtitle.textContent = `Player score: ${state.playerScore} | Opponent score: ${state.opponentScore}`;
+	const playerScoreText = document.querySelector("#playerScoreText");
+	playerScoreText.textContent = state.playerName
+		? `${state.playerName}: ${state.playerScore}`
+		: `YOU: ${state.playerScore}`;
+
+	const opponentScoreText = document.querySelector("#opponentScoreText");
+	opponentScoreText.textContent = `BOT: ${state.opponentScore}`;
 }
 
 function playRound() {
-	console.log({});
-
 	if (state.playerChoice) {
 		state.opponentChoice = getComputerChoice();
-		console.log({
-			playerChoice: state.playerChoice,
-			opponentChoice: state.opponentChoice,
-		});
+
 		const opponentFlipCardInner = document.querySelector(".flip-card-inner");
-		const opponentFlipCardBack = document.querySelector(".flip-card-back");
-		opponentFlipCardBack.classList.add(`${state.opponentChoice}`);
 		opponentFlipCardInner.classList.add("rotate-flip-card");
+
+		const opponentFlipCardBack = document.querySelector(".flip-card-back");
+		opponentFlipCardBack.className = "flip-card-back";
+		opponentFlipCardBack.classList.add(`${state.opponentChoice}`);
+
 		const isOver = compareChoices();
 
 		if (isOver) {
@@ -101,36 +104,33 @@ function playRound() {
 		selectedChoice.classList.toggle("selected-choice");
 		state.playerChoice = "";
 	} else {
-		// const warning = document.querySelector("#warning");
-		// warning?.classList.toggle("hide");
-		console.log("choose one option");
+		const options = document.querySelectorAll(".option");
+
+		options.forEach(opt => {
+			opt.classList.add("gloom");
+			setTimeout(() => opt.classList.remove("gloom"), 2000);
+		});
 	}
 }
 
 function setPlayerChoice(event) {
+	console.log("setPLayerChoice", { state });
+
 	const selectedChoice = event.target;
 	const selectedChoiceName = event.target.id;
+
 	state.playerChoice = selectedChoiceName;
-	const choices = event.srcElement.parentNode.childNodes;
 
-	choices.forEach(
-		choice =>
-			choice.classList?.contains("selected-choice") &&
-			choice.classList?.toggle("selected-choice")
-	);
+	const options = document.querySelectorAll(".option");
+	options.forEach(opt => (opt.className = "option"));
 
-	selectedChoice.classList.toggle("selected-choice");
-
-	console.log({ selectedChoice });
+	selectedChoice.classList.add("selected-choice");
 
 	if (state.opponentChoice) {
 		const opponentFlipCardInner = document.querySelector(".flip-card-inner");
 		opponentFlipCardInner.classList.toggle("rotate-flip-card");
 
-		const currentOpponentChoice = state.opponentChoice;
-
-		const opponentFlipCardBack = document.querySelector(".flip-card-back");
-		opponentFlipCardBack.classList.toggle(currentOpponentChoice);
+		state.opponentChoice = "";
 	}
 }
 
@@ -139,17 +139,10 @@ function createGame(gameMode, playerName) {
 	container.className = "game";
 	container.style =
 		"background: #83d0c9; display: flex; align-items:center; flex-direction: column; padding: 12px; gap: 8px;";
-	const title = document.createElement("h1");
-	title.textContent = `Game Mode: ${gameMode} | Player: ${playerName}`;
-	container.appendChild(title);
-
-	const subtitle = document.createElement("h2");
-	subtitle.textContent = `Player score: ${state.playerScore} | Opponent score: ${state.opponentScore}`;
-	container.appendChild(subtitle);
 
 	const backgroundImage = document.createElement("div");
 	backgroundImage.style =
-		"background-image: url('456.png'); width: 800px; height: 800px; background-size: cover; display: flex; flex-direction: column;";
+		"background-image: url('versusImage.png'); width: 800px; height: 800px; background-size: cover; display: flex; flex-direction: column;";
 
 	container.appendChild(backgroundImage);
 
@@ -159,22 +152,25 @@ function createGame(gameMode, playerName) {
 
 	const playerSide = document.createElement("div");
 	playerSide.style =
-		"border: 1px solid green; flex: 1; display: flex; justify-content: space-around; padding: 0 10px; align-items: end";
+		"border: 1px solid green; flex: 1; display: flex; justify-content: space-around; padding: 0 10px; align-items: end; position: relative";
 	const opponentSide = document.createElement("div");
 	opponentSide.style =
-		"border: 1px solid orange; flex: 1; display: flex; justify-content: center; align-items: start; padding: 0 10px;";
+		"border: 1px solid orange; flex: 1; display: flex; justify-content: center; align-items: start; padding: 0 10px; position: relative";
 
 	const rockBtn = document.createElement("button");
+	rockBtn.className = "option";
 	rockBtn.textContent = "Rock";
 	rockBtn.id = "rock";
 	rockBtn.onclick = setPlayerChoice;
 
 	const paperBtn = document.createElement("button");
+	paperBtn.className = "option";
 	paperBtn.textContent = "Paper";
 	paperBtn.id = "paper";
 	paperBtn.onclick = setPlayerChoice;
 
 	const scissorsBtn = document.createElement("button");
+	scissorsBtn.className = "option";
 	scissorsBtn.textContent = "Scissors";
 	scissorsBtn.id = "scissors";
 	scissorsBtn.onclick = setPlayerChoice;
@@ -203,6 +199,30 @@ function createGame(gameMode, playerName) {
 	const flipCardBackDiv = document.createElement("div");
 	flipCardBackDiv.classList.add("flip-card-back");
 
+	const playerScoreText = document.createElement("p");
+	playerScoreText.className = "name-input";
+	playerScoreText.id = "playerScoreText";
+	playerScoreText.textContent = playerName
+		? `${playerName}: ${state.playerScore}`
+		: `YOU: ${state.playerScore}`;
+
+	const playerScoreDiv = document.createElement("div");
+	playerScoreDiv.style =
+		"position: absolute; top:0; left: 0; margin-left: 40px; margin-top: 40px";
+
+	const opponentScoreText = document.createElement("p");
+	opponentScoreText.className = "name-input";
+	opponentScoreText.id = "opponentScoreText";
+	opponentScoreText.textContent = `BOT: ${state.opponentScore}`;
+
+	const opponentScoreDiv = document.createElement("div");
+	opponentScoreDiv.style =
+		"position: absolute; bottom: 0; left: 0; margin-left: 40px; margin-bottom: 40px";
+
+	opponentScoreDiv.appendChild(opponentScoreText);
+
+	playerScoreDiv.appendChild(playerScoreText);
+
 	flipCardInnerDiv.appendChild(flipCardFrontDiv);
 	flipCardInnerDiv.appendChild(flipCardBackDiv);
 
@@ -210,10 +230,12 @@ function createGame(gameMode, playerName) {
 
 	opponentChoice.appendChild(flipCardDiv);
 
+	playerSide.appendChild(playerScoreDiv);
 	playerSide.appendChild(rockBtn);
 	playerSide.appendChild(paperBtn);
 	playerSide.appendChild(scissorsBtn);
 
+	opponentSide.appendChild(opponentScoreDiv);
 	opponentSide.appendChild(opponentChoice);
 
 	boardGame.appendChild(playerSide);
