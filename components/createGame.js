@@ -6,19 +6,16 @@ function isGameOver() {
 	switch (state.gameMode) {
 		case "bof1":
 			if (state.playerScore === 1 || state.opponentScore === 1) {
-				renderPage("gameOver");
 				return true;
 			}
 
 		case "bof3":
 			if (state.playerScore === 2 || state.opponentScore === 2) {
-				renderPage("gameOver");
 				return true;
 			}
 
 		case "bof5":
 			if (state.playerScore === 3 || state.opponentScore === 3) {
-				renderPage("gameOver");
 				return true;
 			}
 		default:
@@ -69,12 +66,6 @@ function compareChoices() {
 		);
 	}
 
-	const isOver = isGameOver();
-
-	if (isOver) {
-		return true;
-	}
-
 	const playerScoreText = document.querySelector("#playerScoreText");
 	playerScoreText.textContent = state.playerName
 		? `${state.playerName}: ${state.playerScore}`
@@ -82,6 +73,12 @@ function compareChoices() {
 
 	const opponentScoreText = document.querySelector("#opponentScoreText");
 	opponentScoreText.textContent = `BOT: ${state.opponentScore}`;
+
+	const isOver = isGameOver();
+
+	if (isOver) {
+		return true;
+	}
 }
 
 function playRound() {
@@ -97,12 +94,22 @@ function playRound() {
 
 		const isOver = compareChoices();
 
-		if (isOver) {
-			return;
-		}
 		const selectedChoice = document.querySelector(".selected-choice");
 		selectedChoice.classList.toggle("selected-choice");
 		state.playerChoice = "";
+
+		if (isOver) {
+			const confirmBtn = document.querySelector("#confirmBtn");
+			confirmBtn.disabled = true;
+
+			const resetBtn = document.querySelector("#resetBtn");
+			resetBtn.disabled = false;
+
+			const options = document.querySelectorAll(".option");
+			console.log({ options });
+
+			options.forEach(opt => (opt.disabled = true));
+		}
 	} else {
 		const options = document.querySelectorAll(".option");
 
@@ -134,28 +141,29 @@ function setPlayerChoice(event) {
 	}
 }
 
-function createGame(gameMode, playerName) {
+function reset() {
+	renderPage("introduction");
+}
+
+function createGame(playerName) {
 	const container = document.createElement("div");
 	container.className = "game";
 	container.style =
-		"background: #83d0c9; display: flex; align-items:center; flex-direction: column; padding: 12px; gap: 8px;";
-
+		"background: #161616 ; display: flex; align-items:center; flex-direction: column; padding: 12px; gap: 8px;";
 	const backgroundImage = document.createElement("div");
 	backgroundImage.style =
-		"background-image: url('versusImage.png'); width: 800px; height: 800px; background-size: cover; display: flex; flex-direction: column;";
-
-	container.appendChild(backgroundImage);
+		"background-image: url('versusImage.png'); width: 800px; height: 800px; background-size: cover; display: flex; flex-direction: column";
 
 	const boardGame = document.createElement("div");
 	boardGame.style =
-		"border: 1px solid purple; padding: 10px; display: flex; flex: 1; flex-direction: column-reverse";
+		"∂padding: 10px; display: flex; flex: 1; flex-direction: column-reverse";
 
 	const playerSide = document.createElement("div");
 	playerSide.style =
-		"border: 1px solid green; flex: 1; display: flex; justify-content: space-around; padding: 0 10px; align-items: end; position: relative";
+		"flex: 1; display: flex; justify-content: space-around; padding: 0 10px; align-items: end; position: relative";
 	const opponentSide = document.createElement("div");
 	opponentSide.style =
-		"border: 1px solid orange; flex: 1; display: flex; justify-content: center; align-items: start; padding: 0 10px; position: relative";
+		"flex: 1; display: flex; justify-content: center; align-items: start; padding: 0 10px; position: relative";
 
 	const rockBtn = document.createElement("button");
 	rockBtn.className = "option";
@@ -176,15 +184,25 @@ function createGame(gameMode, playerName) {
 	scissorsBtn.onclick = setPlayerChoice;
 
 	const confirmContainer = document.createElement("div");
-	confirmContainer.style = "display: flex; justify-content: center";
+	confirmContainer.style =
+		"display: flex; justify-content: center; margin-top: 20px; gap: 20px";
 
 	const confirmBtn = document.createElement("button");
-	confirmBtn.style = "height: fit-content";
+	confirmBtn.className = "text size-32";
 	confirmBtn.textContent = "Confirm";
+	confirmBtn.id = "confirmBtn";
 	confirmBtn.onclick = playRound;
+
+	const resetBtn = document.createElement("button");
+	resetBtn.className = "text size-32";
+	resetBtn.textContent = "Reset";
+	resetBtn.id = "resetBtn";
+	resetBtn.onclick = reset;
+	resetBtn.disabled = true;
 
 	const opponentChoice = document.createElement("div");
 	opponentChoice.id = "opponent-choice";
+	opponentChoice.style = "margin-top: 10px;";
 
 	const flipCardDiv = document.createElement("div");
 	flipCardDiv.classList.add("flip-card");
@@ -200,7 +218,7 @@ function createGame(gameMode, playerName) {
 	flipCardBackDiv.classList.add("flip-card-back");
 
 	const playerScoreText = document.createElement("p");
-	playerScoreText.className = "name-input";
+	playerScoreText.className = "text size-32";
 	playerScoreText.id = "playerScoreText";
 	playerScoreText.textContent = playerName
 		? `${playerName}: ${state.playerScore}`
@@ -208,16 +226,16 @@ function createGame(gameMode, playerName) {
 
 	const playerScoreDiv = document.createElement("div");
 	playerScoreDiv.style =
-		"position: absolute; top:0; left: 0; margin-left: 40px; margin-top: 40px";
+		"position: absolute; top:0; left: 0; margin-left: 20px; margin-top: 60px";
 
 	const opponentScoreText = document.createElement("p");
-	opponentScoreText.className = "name-input";
+	opponentScoreText.className = "text size-32";
 	opponentScoreText.id = "opponentScoreText";
 	opponentScoreText.textContent = `BOT: ${state.opponentScore}`;
 
 	const opponentScoreDiv = document.createElement("div");
 	opponentScoreDiv.style =
-		"position: absolute; bottom: 0; left: 0; margin-left: 40px; margin-bottom: 40px";
+		"position: absolute; bottom: 0; left: 0; margin-left: 20px; margin-bottom: 60px";
 
 	opponentScoreDiv.appendChild(opponentScoreText);
 
@@ -242,9 +260,12 @@ function createGame(gameMode, playerName) {
 	boardGame.appendChild(opponentSide);
 
 	confirmContainer.appendChild(confirmBtn);
+	confirmContainer.appendChild(resetBtn);
 
 	backgroundImage.appendChild(boardGame);
-	backgroundImage.appendChild(confirmContainer);
+
+	container.appendChild(backgroundImage);
+	container.appendChild(confirmContainer);
 
 	return container;
 }

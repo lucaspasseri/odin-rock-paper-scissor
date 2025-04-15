@@ -16,17 +16,8 @@ export function renderPage(page) {
 			container.appendChild(introductionView);
 			break;
 		case "game":
-			const game = createGame(state.gameMode, state.playerName);
+			const game = createGame(state.playerName);
 			container.appendChild(game);
-			break;
-		case "gameOver":
-			const endgame = createEndgame(
-				state.playerScore,
-				state.opponentScore,
-				state.gameMode,
-				state.playerName
-			);
-			container.appendChild(endgame);
 			break;
 		default:
 			container.innerHTML = "<h2>Page not found</h2>";

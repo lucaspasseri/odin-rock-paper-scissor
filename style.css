@@ -19,11 +19,18 @@ body {
 	align-items: center;
 }
 
-.navbar-text {
+.text {
 	margin: 0 auto;
 	color: white;
-	font-size: 40px;
 	font-family: "Wallpoet", sans-serif;
+}
+
+.navbar-text {
+	font-size: 40px;
+}
+
+.size-32 {
+	font-size: 32px;
 }
 
 .container {
@@ -35,7 +42,7 @@ body {
 }
 
 .selected-choice {
-	box-shadow: 0 0 10px red;
+	box-shadow: 0 0 10px #f90115;
 }
 
 .introduction-container {
@@ -81,6 +88,7 @@ body {
 	height: 165px;
 	border-radius: 12px;
 	background-size: cover;
+	background-color: #aa7244;
 }
 
 #paper {
@@ -89,6 +97,7 @@ body {
 	height: 165px;
 	border-radius: 12px;
 	background-size: cover;
+	background-color: #aa7244;
 }
 
 #scissors {
@@ -97,10 +106,16 @@ body {
 	height: 165px;
 	border-radius: 12px;
 	background-size: cover;
+	background-color: #aa7244;
+}
+
+#confirmBtn,
+#resetBtn {
+	color: #000;
 }
 
 .rock {
-	background: #fff;
+	background: #aa7244;
 	background-image: url("rockk.png");
 	width: 135px;
 	height: 165px;
@@ -111,7 +126,7 @@ body {
 }
 
 .paper {
-	background: #fff;
+	background: #aa7244;
 	background-image: url("paperr.png");
 	width: 135px;
 	height: 165px;
@@ -122,7 +137,7 @@ body {
 }
 
 .scissors {
-	background: #fff;
+	background: #aa7244;
 	background-image: url("scissorss.png");
 	width: 135px;
 	height: 165px;
@@ -168,13 +183,13 @@ body {
 
 @keyframes pulse {
 	0% {
-		box-shadow: 0 0 0px red;
+		box-shadow: 0 0 0px #f90115;
 	}
 	50% {
-		box-shadow: 0 0 10px red;
+		box-shadow: 0 0 10px #f90115;
 	}
 	100% {
-		box-shadow: 0 0 0px red;
+		box-shadow: 0 0 0px #f90115;
 	}
 }
 

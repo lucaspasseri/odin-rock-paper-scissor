@@ -4,7 +4,7 @@ function createNavbar() {
 
 	const p = document.createElement("p");
 	p.textContent = "Rock X Paper X Scissors";
-	p.className = "navbar-text";
+	p.className = "text navbar-text";
 
 	navbar.appendChild(p);
 
