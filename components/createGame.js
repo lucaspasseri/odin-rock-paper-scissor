@@ -148,11 +148,9 @@ function reset() {
 function createGame(playerName) {
 	const container = document.createElement("div");
 	container.className = "game";
-	container.style =
-		"background: #161616 ; display: flex; align-items:center; flex-direction: column; padding: 12px; gap: 8px;";
-	const backgroundImage = document.createElement("div");
-	backgroundImage.style =
-		"background-image: url('versusImage.png'); width: 800px; height: 800px; background-size: cover; display: flex; flex-direction: column";
+
+	const backgroundImageDiv = document.createElement("div");
+	backgroundImageDiv.className = "background-image-div";
 
 	const boardGame = document.createElement("div");
 	boardGame.style =
@@ -167,25 +165,22 @@ function createGame(playerName) {
 
 	const rockBtn = document.createElement("button");
 	rockBtn.className = "option";
-	rockBtn.textContent = "Rock";
 	rockBtn.id = "rock";
 	rockBtn.onclick = setPlayerChoice;
 
 	const paperBtn = document.createElement("button");
 	paperBtn.className = "option";
-	paperBtn.textContent = "Paper";
 	paperBtn.id = "paper";
 	paperBtn.onclick = setPlayerChoice;
 
 	const scissorsBtn = document.createElement("button");
 	scissorsBtn.className = "option";
-	scissorsBtn.textContent = "Scissors";
 	scissorsBtn.id = "scissors";
 	scissorsBtn.onclick = setPlayerChoice;
 
 	const confirmContainer = document.createElement("div");
 	confirmContainer.style =
-		"display: flex; justify-content: center; margin-top: 20px; gap: 20px";
+		"display: flex; justify-content: center; margin: 20px 0; gap: 20px;";
 
 	const confirmBtn = document.createElement("button");
 	confirmBtn.className = "text size-32";
@@ -226,7 +221,7 @@ function createGame(playerName) {
 
 	const playerScoreDiv = document.createElement("div");
 	playerScoreDiv.style =
-		"position: absolute; top:0; left: 0; margin-left: 20px; margin-top: 60px";
+		"position: absolute; top:0; left: 0; margin-left: 20px; margin-top: 80px";
 
 	const opponentScoreText = document.createElement("p");
 	opponentScoreText.className = "text size-32";
@@ -235,7 +230,7 @@ function createGame(playerName) {
 
 	const opponentScoreDiv = document.createElement("div");
 	opponentScoreDiv.style =
-		"position: absolute; bottom: 0; left: 0; margin-left: 20px; margin-bottom: 60px";
+		"position: absolute; bottom: 0; left: 0; margin-left: 20px; margin-bottom: 80px";
 
 	opponentScoreDiv.appendChild(opponentScoreText);
 
@@ -262,9 +257,9 @@ function createGame(playerName) {
 	confirmContainer.appendChild(confirmBtn);
 	confirmContainer.appendChild(resetBtn);
 
-	backgroundImage.appendChild(boardGame);
+	backgroundImageDiv.appendChild(boardGame);
 
-	container.appendChild(backgroundImage);
+	container.appendChild(backgroundImageDiv);
 	container.appendChild(confirmContainer);
 
 	return container;
