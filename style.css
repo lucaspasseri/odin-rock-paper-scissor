@@ -13,6 +13,10 @@ body {
 	padding: 0;
 }
 
+button {
+	cursor: pointer;
+}
+
 .navbar {
 	background: #009688;
 	height: 80px;
@@ -88,6 +92,31 @@ body {
 	margin: 0 10px;
 }
 
+.board-game {
+	padding: 10px;
+	display: flex;
+	flex: 1;
+	flex-direction: column-reverse;
+}
+
+.player-side {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	padding: 0 10px;
+	align-items: end;
+	position: relative;
+}
+
+.opponent-side {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	padding: 0 10px;
+	position: relative;
+}
+
 .background-image-div {
 	background-image: url("./images/versusImage.png");
 	background-size: cover;
@@ -151,6 +180,13 @@ body {
 	transform: rotate(180deg);
 }
 
+.confirm-container {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
+	gap: 20px;
+}
+
 .flip-card {
 	background-color: transparent;
 	width: 135px;
@@ -199,4 +235,20 @@ body {
 
 .gloom {
 	animation: pulse 1s ease-in-out 2;
+}
+
+.player-score-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 20px;
+	margin-top: 80px;
+}
+
+.opponent-score-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin-left: 20px;
+	margin-bottom: 80px;
 }

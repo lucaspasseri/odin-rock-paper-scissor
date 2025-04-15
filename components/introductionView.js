@@ -1,5 +1,5 @@
 import { state } from "../state.js";
-import { renderPage } from "../app.js";
+import { renderPage } from "../game/renderPage.js";
 
 function navigateToGame(e) {
 	state.gameMode = e.target.id;
@@ -39,6 +39,7 @@ function createIntroduction() {
 	nameInput.className = "name-input";
 	nameInput.placeholder = "Insert your name";
 	nameInput.oninput = insertName;
+	nameInput.maxLength = 16;
 
 	container.appendChild(nameInput);
 	container.appendChild(bestOf1);
