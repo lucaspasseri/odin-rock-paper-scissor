@@ -1,65 +1,28 @@
-import { capitalize } from "./util.js";
+import { navbarComponent } from "./components/navbarComponent.js";
+import { introductionView } from "./components/introductionView.js";
+import { createGame } from "./components/createGame.js";
+import { state, initialState } from "./state.js";
+import { createEndgame } from "./components/createEndgame.js";
 
-function getComputerChoice() {
-	const randomChoice = Math.floor(Math.random() * 3);
+const container = document.querySelector(".container");
+document.body.insertBefore(navbarComponent, container);
 
-	switch (randomChoice) {
-		case 0:
-			return "rock";
-		case 1:
-			return "paper";
-		case 2:
-			return "scissors";
+export function renderPage(page) {
+	container.innerHTML = "";
+
+	switch (page) {
+		case "introduction":
+			Object.assign(state, initialState);
+			container.appendChild(introductionView);
+			break;
+		case "game":
+			const game = createGame(state.playerName);
+			container.appendChild(game);
+			break;
+		default:
+			container.innerHTML = "<h2>Page not found</h2>";
+			break;
 	}
 }
 
-function getHumanChoice() {
-	const answer = prompt(
-		"Enter your choice: rock, paper or scissors"
-	).toLowerCase();
-
-	return answer;
-}
-
-function playGame() {
-	let humanScore = 0;
-	let computerScore = 0;
-
-	let computerChoice;
-	let humanChoice;
-
-	function playRound(humanChoice, computerChoice) {
-		computerChoice = getComputerChoice();
-		humanChoice = getHumanChoice();
-
-		if (humanChoice === computerChoice) {
-			console.log("It is a draw!");
-		} else if (humanChoice === "rock" && computerChoice === "scissors") {
-			humanScore += 1;
-			console.log("You won!\nRock beats scissors.");
-		} else if (humanChoice === "scissors" && computerChoice === "paper") {
-			humanScore += 1;
-			console.log("You won!\nScissors beats paper.");
-		} else if (humanChoice === "paper" && computerChoice === "rock") {
-			humanScore += 1;
-			console.log("You won!\nPaper beats rock.");
-		} else {
-			computerScore += 1;
-			console.log(
-				`You lost!\n${capitalize(computerChoice)} beats ${humanChoice}.`
-			);
-		}
-	}
-
-	while (humanScore !== 5 && computerScore !== 5) {
-		playRound(humanChoice, computerChoice);
-	}
-
-	if (humanScore > computerScore) {
-		console.log(`Well done, you won!\n${humanScore} x ${computerScore}`);
-	} else {
-		console.log(`You lost!\n${computerScore} x ${humanScore}`);
-	}
-}
-
-playGame();
+renderPage("introduction");

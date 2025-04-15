@@ -1,0 +1,198 @@
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background-color: #54b2a9;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar {
+	background: #009688;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+
+.text {
+	margin: 0 auto;
+	color: white;
+	font-family: "Wallpoet", sans-serif;
+}
+
+.navbar-text {
+	font-size: 40px;
+}
+
+.size-32 {
+	font-size: 32px;
+}
+
+.container {
+	min-height: calc(100vh - 80px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.selected-choice {
+	box-shadow: 0 0 10px #f90115;
+}
+
+.introduction-container {
+	background: #83d0c9;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 12px;
+	gap: 8px;
+}
+
+.best-of-n-button {
+	background: #009688;
+	color: white;
+	font-size: 36px;
+	font-family: "Wallpoet", sans-serif;
+	width: 100%;
+}
+
+.name-input {
+	height: 42px;
+	font-size: 36px;
+	font-family: "Wallpoet", sans-serif;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.blank-option {
+	background: #009688;
+	background-image: url("logo.png");
+	width: 135px;
+	height: 165px;
+	border-radius: 12px;
+	border: 1px solid black;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 0 14px;
+}
+
+#rock {
+	background-image: url("rockk.png");
+	width: 135px;
+	height: 165px;
+	border-radius: 12px;
+	background-size: cover;
+	background-color: #aa7244;
+}
+
+#paper {
+	background-image: url("paperr.png");
+	width: 135px;
+	height: 165px;
+	border-radius: 12px;
+	background-size: cover;
+	background-color: #aa7244;
+}
+
+#scissors {
+	background-image: url("scissorss.png");
+	width: 135px;
+	height: 165px;
+	border-radius: 12px;
+	background-size: cover;
+	background-color: #aa7244;
+}
+
+#confirmBtn,
+#resetBtn {
+	color: #000;
+}
+
+.rock {
+	background: #aa7244;
+	background-image: url("rockk.png");
+	width: 135px;
+	height: 165px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background-size: cover;
+	transform: rotate(180deg);
+}
+
+.paper {
+	background: #aa7244;
+	background-image: url("paperr.png");
+	width: 135px;
+	height: 165px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background-size: cover;
+	transform: rotate(180deg);
+}
+
+.scissors {
+	background: #aa7244;
+	background-image: url("scissorss.png");
+	width: 135px;
+	height: 165px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background-size: cover;
+	transform: rotate(180deg);
+}
+
+.flip-card {
+	background-color: transparent;
+	width: 135px;
+	height: 165px;
+	perspective: 1000px;
+	transform: rotate(180deg);
+}
+
+.flip-card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.flip-card-back {
+	transform: rotateY(180deg);
+}
+
+.rotate-flip-card {
+	transform: rotateY(180deg);
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0px #f90115;
+	}
+	50% {
+		box-shadow: 0 0 10px #f90115;
+	}
+	100% {
+		box-shadow: 0 0 0px #f90115;
+	}
+}
+
+.gloom {
+	animation: pulse 1s ease-in-out 2;
+}
