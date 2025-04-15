@@ -4,6 +4,7 @@
 
 a {
 	text-decoration: none;
+	color: #54b2a9;
 }
 
 body {
@@ -36,7 +37,7 @@ body {
 }
 
 .container {
-	min-height: calc(100vh - 80px);
+	min-height: calc(100vh - 172px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -88,7 +89,7 @@ body {
 }
 
 .background-image-div {
-	background-image: url("versusImage.png");
+	background-image: url("images/versusImage.png");
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -99,7 +100,7 @@ body {
 
 .blank-option {
 	background: #009688;
-	background-image: url("logo.png");
+	background-image: url("images/logo.png");
 	width: 135px;
 	height: 165px;
 	border-radius: 12px;
@@ -109,8 +110,9 @@ body {
 	background-position: 0 14px;
 }
 
-#rock {
-	background-image: url("rockk.png");
+#rock,
+.rock {
+	background-image: url("images/rockHand.png");
 	width: 135px;
 	height: 165px;
 	border-radius: 12px;
@@ -118,8 +120,9 @@ body {
 	background-color: #aa7244;
 }
 
-#paper {
-	background-image: url("paperr.png");
+#paper,
+.paper {
+	background-image: url("images/paperHand.png");
 	width: 135px;
 	height: 165px;
 	border-radius: 12px;
@@ -127,8 +130,9 @@ body {
 	background-color: #aa7244;
 }
 
-#scissors {
-	background-image: url("scissorss.png");
+#scissors,
+.scissors {
+	background-image: url("images/scissorsHand.png");
 	width: 135px;
 	height: 165px;
 	border-radius: 12px;
@@ -141,36 +145,9 @@ body {
 	color: #000;
 }
 
-.rock {
-	background: #aa7244;
-	background-image: url("rockk.png");
-	width: 135px;
-	height: 165px;
-	border: 1px solid black;
-	border-radius: 12px;
-	background-size: cover;
-	transform: rotate(180deg);
-}
-
-.paper {
-	background: #aa7244;
-	background-image: url("paperr.png");
-	width: 135px;
-	height: 165px;
-	border: 1px solid black;
-	border-radius: 12px;
-	background-size: cover;
-	transform: rotate(180deg);
-}
-
+.rock,
+.paper,
 .scissors {
-	background: #aa7244;
-	background-image: url("scissorss.png");
-	width: 135px;
-	height: 165px;
-	border: 1px solid black;
-	border-radius: 12px;
-	background-size: cover;
 	transform: rotate(180deg);
 }
 

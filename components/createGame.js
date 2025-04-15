@@ -1,6 +1,5 @@
 import { renderPage } from "../app.js";
 import { state } from "../state.js";
-import { capitalize } from "../util.js";
 
 function isGameOver() {
 	switch (state.gameMode) {
@@ -38,32 +37,23 @@ function getComputerChoice() {
 
 function compareChoices() {
 	if (state.playerChoice === state.opponentChoice) {
-		console.log("It is a draw!");
 	} else if (
 		state.playerChoice === "rock" &&
 		state.opponentChoice === "scissors"
 	) {
 		state.playerScore += 1;
-		console.log("You won!\nRock beats scissors.");
 	} else if (
 		state.playerChoice === "scissors" &&
 		state.opponentChoice === "paper"
 	) {
 		state.playerScore += 1;
-		console.log("You won!\nScissors beats paper.");
 	} else if (
 		state.playerChoice === "paper" &&
 		state.opponentChoice === "rock"
 	) {
 		state.playerScore += 1;
-		console.log("You won!\nPaper beats rock.");
 	} else {
 		state.opponentScore += 1;
-		console.log(
-			`You lost!\n${capitalize(state.opponentChoice)} beats ${
-				state.playerChoice
-			}.`
-		);
 	}
 
 	const playerScoreText = document.querySelector("#playerScoreText");
@@ -106,8 +96,6 @@ function playRound() {
 			resetBtn.disabled = false;
 
 			const options = document.querySelectorAll(".option");
-			console.log({ options });
-
 			options.forEach(opt => (opt.disabled = true));
 		}
 	} else {
@@ -121,8 +109,6 @@ function playRound() {
 }
 
 function setPlayerChoice(event) {
-	console.log("setPLayerChoice", { state });
-
 	const selectedChoice = event.target;
 	const selectedChoiceName = event.target.id;
 
